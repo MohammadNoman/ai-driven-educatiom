@@ -1,0 +1,27 @@
+
+services:
+  # The FastAPI Backend Agent
+  - type: web
+    name: panaversity-rag-agent
+    env: docker
+    rootDir: backend
+    plan: free
+    branch: main
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: QDRANT_URL
+        sync: false
+      - key: QDRANT_API_KEY
+        sync: false
+    autoDeploy: true
+
+  # The "Live Book" Frontend (simulated static site)
+  # Note: In production, we use GitHub Pages (via Actions), 
+  # but this service allows for preview deployments on Render.
+  - type: static
+    name: panaversity-live-book
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    branch: main

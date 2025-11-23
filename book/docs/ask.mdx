@@ -1,0 +1,22 @@
+---
+id: ask
+title: Ask the Agent
+sidebar_label: Ask the Agent
+---
+
+This page demonstrates the interactive RAG agent. Highlight any text in the book and click the floating "Ask" button to query the agent.
+
+## How it works (Architecture Diagram)
+
+```mermaid
+graph TD
+    User((User)) -->|Selects Text| UI[React Widget]
+    UI -->|POST /query| API[FastAPI Backend]
+    API -->|Orchestrate| QA[QueryAgent]
+    QA -->|Retrieve| VDB[(Qdrant Cloud)]
+    QA -->|Generate| LLM[GPT-4o]
+    LLM -->|Review| RA[ReflectionAgent]
+    RA -->|Stream| UI
+```
+
+**Note:** The embedded RAG agent queries the content of this book.

@@ -1,0 +1,54 @@
+name: Auto-Ingest Docs to Qdrant
+
+on:
+  push:
+    branches:
+      - main # Trigger on pushes to the main branch
+
+jobs:
+  ingest-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # Or your preferred Node.js version
+
+      - name: Install Docusaurus dependencies
+        run: |
+          cd book
+          npm install
+
+      - name: Build Docusaurus site
+        run: |
+          cd book
+          npm run build
+
+      - name: Archive Docusaurus build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: docusaurus-build
+          path: book/build
+
+      - name: Get Docusaurus build path
+        id: get_build_path
+        run: echo "BUILD_PATH=$(pwd)/book/build" >> $GITHUB_ENV
+
+      - name: Call Ingest Endpoint
+        env:
+          QDRANT_INGEST_URL: ${{ secrets.QDRANT_INGEST_URL }} # User needs to set this secret
+        run: |
+          # This is a placeholder for how you would call the ingest endpoint.
+          # You might need to adjust this command based on your backend's API.
+          # Example: sending the path to the built docs, or zipping and sending.
+          echo "Calling ingest endpoint: $QDRANT_INGEST_URL with docs from $BUILD_PATH"
+          # For a simple local ingestion, you might just run a script.
+          # For an external API, you'd use curl or a custom action.
+          # Example using curl to send a POST request with the path to the docs
+          # curl -X POST -H "Content-Type: application/json" \
+          #      -d "{\"docs_path\": \"$BUILD_PATH\"}" \
+          #      "$QDRANT_INGEST_URL"
+          echo "Ingestion process initiated. Check backend logs for details."

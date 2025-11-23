@@ -1,0 +1,34 @@
+---
+id: ch1
+title: 1. The Future of AI-Driven Faculty Work
+sidebar_label: Ch. 1 Future
+---
+Faculty roles are shifting from **Knowledge Dispensers** to **Learning Architects**.
+
+## Learning Objectives
+- Identify the three phases of faculty evolution.
+- Understand the "Human-in-the-Loop" necessity.
+- Draft a personal transition plan.
+
+## Faculty AI Maturity Model
+
+| Level | Name | Description | Criteria |
+|---|---|---|---|
+| 1 | AI-Aware | Ad-hoc use of AI tools. | Faculty uses ChatGPT for basic drafting., Students use AI for homework assistance (often unguided)., No formal policy. |
+| 2 | AI-Assisted | AI integrated into workflows. | Faculty uses structured prompts., Assignments designed with AI in mind., Basic RAG used for course search. |
+| 3 | AI-Native | Curriculum redesigned for AI. | Live Books with embedded agents., Personalized learning paths., Evaluation via AI simulation. |
+| 4 | AI-Symbiotic | Co-evolution of human/AI. | Recursive self-improvement of course material., Autonomous student agents., Global knowledge mesh integration. |
+
+## The Automation Paradox
+As AI automates content generation, the value of *curation* and *mentorship* skyrockets. We use Python agents to handle the drudgery.
+
+```python title="faculty_agent.py"
+class FacultyAssistant:
+    def __init__(self, vector_store):
+        self.knowledge_base = vector_store
+        
+    def draft_syllabus(self, topic: str, level: str) -> str:
+        """Generates a spec-driven syllabus draft."""
+        context = self.knowledge_base.query(f"Standard curriculum for {topic}")
+        return f"Generated Syllabus for {topic} ({level}) based on {len(context)} sources."
+```

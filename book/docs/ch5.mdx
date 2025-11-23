@@ -1,0 +1,20 @@
+---
+id: ch5
+title: 5. Retrieval-Augmented Generation for Education
+sidebar_label: Ch. 5 RAG Architecture
+---
+Hallucinations are fatal in education. RAG solves this by grounding generation in a curated vector store.
+
+## RAG Architecture
+```mermaid
+graph LR
+    A[Student Query] --> B[Embedding Model]
+    B --> C[Vector Database]
+    C -->|Retrieve Chunks| D[Context Window]
+    D --> E[LLM]
+    E --> F[Answer]
+```
+Standard Educational RAG Pipeline
+
+## Embedding Strategy
+For technical textbooks, we recommend using **text-embedding-3-small** or **Gemini Embeddings** with a chunk size of 512 tokens.

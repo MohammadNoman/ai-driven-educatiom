@@ -1,0 +1,22 @@
+---
+id: ch7
+title: 7. Reusable Sub-Agents & Skills
+sidebar_label: Ch. 7 Sub-Agents
+---
+Monolithic agents are brittle. We build swarms of specialized sub-agents.
+
+## Defining Skills
+A skill is a TypeScript function exposed to the LLM via tool calling.
+```typescript title="skills/gradeCode.ts"
+import { Tool } from '@langchain/core/tools';
+
+export class GradeCode extends Tool {
+  name = "grade_python_code";
+  description = "Checks python code for PEP8 and logic errors.";
+  
+  async _call(code: string) {
+    // Implementation of static analysis
+    return JSON.stringify({ score: 85, errors: [] });
+  }
+}
+```

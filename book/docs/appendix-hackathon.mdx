@@ -1,0 +1,34 @@
+---
+id: appendix-hackathon
+title: Appendix: Hackathon Implementation Details
+sidebar_label: Appendix
+---
+This section documents the system architecture used to power this very book's chatbot.
+
+## Spec-Kit Plus: RAG Agent
+The following specification defines the behavior of the Ingestion, Query, and Reflection agents.
+```yaml title="specs/rag-agent-spec.yaml"
+project: "panaversity-rag-agent"
+stack:
+  backend: "FastAPI"
+  vector_db: "Qdrant Cloud"
+  llm: "OpenAI GPT-4o"
+
+agents:
+  - name: IngestionAgent
+    skill: education-embedding-skill
+    config: { chunk_size: 1000, overlap: 200 }
+  
+  - name: QueryAgent
+    instructions: "Prioritize selected context. Cite chapters."
+  
+  - name: ReflectionAgent
+    trigger: "post-response"
+    criteria: "Grounding Score > 0.7"
+```
+
+## FastAPI Backend
+We use a lightweight FastAPI wrapper to orchestrate the agents. View `backend/main.py` in the repository for full source.
+
+## React Widget
+The floating widget detects `window.getSelection()` events to enable context-aware queries.

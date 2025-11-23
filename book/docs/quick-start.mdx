@@ -1,0 +1,25 @@
+# Quick Start
+
+### 1. Clone & Install
+```bash
+git clone https://github.com/panaversity/ai-driven-education.git
+cd ai-driven-education
+npm install
+```
+
+### 2. Run Backend (Agent Swarm)
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+# Requires .env with OPENAI_API_KEY and QDRANT_URL
+uvicorn main:app --reload
+```
+
+### 3. Run Frontend (Live Book)
+```bash
+# In root directory
+npm start
+```
+Visit `http://localhost:3000`. Highlight any text to see the magic.

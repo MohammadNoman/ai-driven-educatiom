@@ -1,0 +1,47 @@
+---
+id: ch2
+title: 2. From AI-Assisted to AI-Native Education
+sidebar_label: Ch. 2 AI-Native Edu
+---
+AI-Native education isn't about adding chatbots to LMS. It's about rebuilding the LMS as an agentic platform.
+
+## The Paradigm Shift
+<div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+    <div className="p-4 border rounded bg-red-50 dark:bg-red-900/10 border-red-200">
+        <h3 className="font-bold text-red-700 dark:text-red-400">Legacy (Factory Model)</h3>
+        <ul className="text-sm mt-2 space-y-1">
+            <li>Standardized Curriculum</li>
+            <li>Batch Processing</li>
+            <li>Summative Exams</li>
+        </ul>
+    </div>
+    <div className="p-4 border rounded bg-green-50 dark:bg-green-900/10 border-green-200">
+        <h3 className="font-bold text-green-700 dark:text-green-400">AI-Native (Personalized)</h3>
+        <ul className="text-sm mt-2 space-y-1">
+            <li>Adaptive Pathways</li>
+            <li>Individual Tutoring</li>
+            <li>Continuous Formative Feedback</li>
+        </ul>
+    </div>
+</div>
+
+## Spec-Kit Plus Integration
+We use **Spec-Kit Plus** to define educational outcomes as code.
+```typescript title="course-spec.ts"
+interface CourseModule {
+  id: string;
+  objectives: LearningObjective[];
+  rag_context_ids: string[]; // Links to vector DB
+  assessment_agent_config: AgentConfig;
+}
+
+const aiCourse: CourseModule = {
+  id: "gen-ai-101",
+  objectives: [{ action: "Build", target: "RAG Pipeline" }],
+  rag_context_ids: ["doc_882", "doc_991"],
+  assessment_agent_config: {
+    model: "gemini-1.5-pro",
+    temperature: 0.2
+  }
+};
+```

@@ -1,0 +1,28 @@
+---
+id: ch4
+title: 4. Building Live Books with Docusaurus
+sidebar_label: Ch. 4 Live Books
+---
+Docusaurus 3 provides the perfect React-based hydration engine for interactive content.
+
+## Quick Setup
+```bash
+npx create-docusaurus@latest my-live-book classic --typescript
+cd my-live-book
+npm start
+```
+
+## Adding Interactivity
+Because Docusaurus is React, we can embed complex components directly in MDX.
+```tsx title="src/components/Quiz.tsx"
+export default function Quiz({ question, answer }) {
+  const [show, setShow] = useState(false);
+  return (
+    <div className="quiz-box">
+      <h3>{question}</h3>
+      <button onClick={() => setShow(!show)}>Reveal</button>
+      {show && <p>{answer}</p>}
+    </div>
+  );
+}
+```

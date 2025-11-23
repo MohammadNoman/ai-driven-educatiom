@@ -1,0 +1,40 @@
+---
+id: ch6
+title: 6. Embedding Reusable RAG Agents
+sidebar_label: Ch. 6 Embedded Agents
+---
+A "Live Book" listens. It answers questions about itself.
+
+## The Chat Component
+```tsx title="src/theme/Layout.tsx"
+// Swizzled Layout to inject Chatbot
+import React from 'react';
+import Layout from '@theme-original/Layout';
+
+export default function LayoutWrapper(props) {
+  return (
+    <>
+      <Layout {...props} />
+      <div className="fixed bottom-5 right-5 z-50">
+        <iframe src="/ask" className="w-96 h-[500px] rounded-xl shadow-2xl" />
+      </div>
+    </>
+  );
+}
+```
+## Data Flow
+```mermaid
+sequenceDiagram
+    participant User
+    participant UI as LiveBook UI
+    participant API as Next.js API
+    participant VDB as Pinecone
+    
+    User->>UI: "Explain Spec-Kit?"
+    UI->>API: POST /api/chat
+    API->>VDB: Query(embedding)
+    VDB-->>API: Top 3 chunks
+    API->>API: Generate(prompt + chunks)
+    API-->>UI: Stream Response
+    UI-->>User: Display Answer
+```

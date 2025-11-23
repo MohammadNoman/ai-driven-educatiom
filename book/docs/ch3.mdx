@@ -1,0 +1,27 @@
+---
+id: ch3
+title: 3. Spec-Driven Development with Spec-Kit Plus
+sidebar_label: Ch. 3 Spec-Driven Dev
+---
+Spec-Kit Plus is the Panaversity standard for defining project requirements that both humans and AI agents can understand.
+
+## Syntax Guide
+A Spec-Kit Plus file is a markdown file with enhanced metadata headers.
+
+```markdown title="PROJECT_SPEC.md"
+---
+project_name: "rag-edu-bot"
+stack: ["docusaurus", "langchain", "pinecone"]
+complexity: "intermediate"
+agent_instructions: "Focus on modularity and type safety."
+---
+
+# Functional Requirements
+1. User inputs query via iframe.
+2. System retrieves top-k chunks.
+3. LLM synthesizes answer with citations.
+```
+
+:::tip Best Practice
+Always version control your specs. They are the source of truth for your AI agents.
+:::

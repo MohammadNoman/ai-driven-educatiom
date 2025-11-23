@@ -3,7 +3,8 @@ name: Auto-Ingest Docs to Qdrant
 on:
   push:
     branches:
-      - main # Trigger on pushes to the main branch
+      - main
+      - master
 
 jobs:
   ingest-docs:

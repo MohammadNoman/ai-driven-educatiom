@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@theme-original/Layout';
 import type LayoutType from '@theme/Layout';
 import type { WrapperProps } from '@docusaurus/types';
-import ChatWidget from '../../src/components/ChatWidget'; // Adjust path as needed
+// import ChatWidget from '../../src/components/ChatWidget'; // Temporarily comment out ChatWidget
 
 type Props = WrapperProps<typeof LayoutType>;
 
@@ -10,7 +10,7 @@ export default function LayoutWrapper(props: Props): JSX.Element {
   return (
     <>
       <Layout {...props} />
-      <ChatWidget /> {/* Integrate ChatWidget */}
+      {/* <ChatWidget /> */} {/* Temporarily comment out ChatWidget */}
     </>
   );
 }

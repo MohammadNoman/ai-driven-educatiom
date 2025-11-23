@@ -50,12 +50,6 @@ const config: Config = {
         },
         theme: {
           customCss: './src/css/custom.css',
-          postcss: {
-            plugins: [
-              require('tailwindcss'),
-              require('autoprefixer'),
-            ],
-          },
         },
       } satisfies Preset.Options,
     ],
